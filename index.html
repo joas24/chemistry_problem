@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>chemicla problem</title>
+        <script>
+            let problems = 
+            [1,
+            2,
+            3,
+            4,
+            5]
+            let answers = [0,0,0,0,0]
+            let my_answer = 2;
+            let num_pro = 0;
+            let num_pro_num = 1;
+            let score = 0;
+
+            let pro_func = function(n){
+                document.getElementById('problem').innerHTML=problems[n];
+            }
+            let pro_num_func = function(n){
+                document.getElementById('pro_num').innerHTML= n+"/5";
+            }
+            let answerCheck = function(n){
+                if(my_answer == answers[n]) score++;
+            }
+            let final = function(){
+                document.getElementById('score').innerHTML=score+"문제 맞추셨습니다!";
+                document.getElementById('content').style.display='none';
+            }
+
+        </script>
+        <link rel="stylesheet" href="css.css">
+    </head>
+    <body>
+        <button id="start" onclick="document.getElementById('content').style.display='block'; this.style.display='none'; pro_func(num_pro); pro_num_func(num_pro_num); ">start</button>
+
+
+        <div id="content">
+            <div id="pro_num"></div> 
+            <div id="problem"></div>    
+            <button id="O" onclick="my_answer=1; this.style.backgroundColor='green'; document.getElementById('X').style.backgroundColor='white'; ">O</button>  
+            <button id="X" onclick="my_answer=0; this.style.backgroundColor='red'; document.getElementById('O').style.backgroundColor='white';">X</button>
+            <button id="next" onclick="if(num_pro_num < 4){answerCheck(num_pro); pro_func(++num_pro); pro_num_func(++num_pro_num);} 
+            else if(num_pro_num ==4){answerCheck(num_pro); pro_func(++num_pro); pro_num_func(++num_pro_num); this.innerHTML='결과'}
+            else if(num_pro_num ==5){answerCheck(num_pro); final()}">다음 문제</button>
+        </div>
+
+        <div id="final">
+            <h1 id="score"></h1>
+            <div id="ment"></div>
+        </div>
+    </body>
+</html>
